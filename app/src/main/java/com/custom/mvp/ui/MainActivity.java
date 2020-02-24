@@ -1,6 +1,7 @@
 package com.custom.mvp.ui;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.custom.core.unit.MyLog;
 import com.custom.mvp.R;
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DaggerUserComponent.builder().build().inject(this);
+    }
+
+    public void injectUser(View view) {
         user.setAge("30");
         user.setName("杨胜文");
         MyLog.d(TAG, "MainActivity.onCreate：" + user.toString());
