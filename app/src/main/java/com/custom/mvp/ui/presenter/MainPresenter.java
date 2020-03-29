@@ -1,10 +1,14 @@
 package com.custom.mvp.ui.presenter;
 
+import android.util.Log;
+
 import com.custom.core.base.mvp.BasePresenter;
-import com.custom.mvp.model.User;
 import com.custom.mvp.ui.contract.MainContract;
 
-import java.util.ArrayList;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenter extends BasePresenter<MainContract.Model, MainContract.View> {
 
@@ -14,30 +18,29 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
 
     public void getUserInfo() {
         mRootView.showLoadingDialog();
-        try {
-            mModel.getHttpData();
-            ArrayList<User> list = new ArrayList<>();
-            for (int i = 0; i < 5; i++) {
-                User user = new User();
-                user.setName("名字_" + i);
-                user.setAge("年龄_" + (20 + i));
-                list.add(user);
-            }
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        sleep(3000);
-                        mRootView.successHttpData(list);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+        mModel.getHttpData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
-                }
-            }.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //请求回调
-        mRootView.hidLoadingDialog();
+
+                    @Override
+                    public void onNext(String s) {
+                        Log.d("Ysw", "onNext: s = " + s);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("Ysw", "onError: e = " + e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

@@ -1,4 +1,4 @@
-package com.custom.mvp.ui;
+package com.custom.mvp.ui.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,12 +8,9 @@ import android.widget.Toast;
 
 import com.custom.core.base.mvp.BaseActivity;
 import com.custom.mvp.R;
-import com.custom.mvp.model.User;
 import com.custom.mvp.ui.contract.MainContract;
 import com.custom.mvp.ui.model.MainModel;
 import com.custom.mvp.ui.presenter.MainPresenter;
-
-import java.util.List;
 
 import androidx.annotation.Nullable;
 
@@ -58,8 +55,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mPresenter.getUserInfo();
     }
 
+
     @Override
-    public void successHttpData(List<User> list) {
-        tvName.setText(list.get(0).getName());
+    public void successHttpData(String data) {
+        Log.d("Ysw", "successHttpData: data = " + data.toString());
     }
 }

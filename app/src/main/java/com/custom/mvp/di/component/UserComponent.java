@@ -1,6 +1,6 @@
 package com.custom.mvp.di.component;
 
-import com.custom.mvp.ui.MainActivity;
+import com.custom.mvp.ui.activity.MainActivity;
 
 import javax.inject.Singleton;
 
