@@ -2,6 +2,7 @@ package com.custom.mvp.ui.presenter;
 
 import android.util.Log;
 
+import com.custom.core.base.mvp.BaseObserver;
 import com.custom.core.base.mvp.BasePresenter;
 import com.custom.mvp.ui.contract.MainContract;
 
@@ -11,6 +12,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenter extends BasePresenter<MainContract.Model, MainContract.View> {
+    private final String TAG = this.getClass().getSimpleName();
 
     public MainPresenter(MainContract.Model model, MainContract.View view) {
         super(model, view);
@@ -21,25 +23,15 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
         mModel.getHttpData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<String>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
+                .subscribe(new BaseObserver<String>(MainPresenter.this) {
                     @Override
                     public void onNext(String s) {
-                        Log.d("Ysw", "onNext: s = " + s);
+                        Log.d(TAG, "onNext: s = " + s);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("Ysw", "onError: e = " + e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                        Log.d(TAG, "onError: e = " + e);
                     }
                 });
     }
