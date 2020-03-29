@@ -1,29 +1,19 @@
 package com.custom.core.base.mvp;
 
 /**
- * Created by: Ysw on 2020/2/23.
+ * Created by: Ysw on 2020/3/29.
  */
-public class BasePresenter<M extends IModel, V extends IView> implements IPresenter {
-    protected M mModel;
-    protected V mRootView;
+public class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {
 
-    public BasePresenter(M mModel, V mRootView) {
-        this.mModel = mModel;
-        this.mRootView = mRootView;
-    }
+    protected V mView;
 
-    public BasePresenter(V mRootView) {
-        this.mRootView = mRootView;
-    }
-
-    public BasePresenter() {
+    @Override
+    public void attachView(V view) {
+        this.mView = view;
     }
 
     @Override
-    public void onDestroy() {
-        if (mModel != null)
-            mModel.onDestroy();
-        this.mModel = null;
-        this.mRootView = null;
+    public void detachView() {
+        this.mView = null;
     }
 }
