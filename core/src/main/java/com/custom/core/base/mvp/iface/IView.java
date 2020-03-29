@@ -5,4 +5,7 @@ package com.custom.core.base.mvp.iface;
  */
 public interface IView {
 
+    void showLoadingDialog();
+
+    void hidLoadingDialog();
 }
