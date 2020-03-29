@@ -1,8 +1,13 @@
 package com.custom.core.base.mvp;
 
+import com.custom.core.base.mvp.iface.IModel;
+
 /**
- * Created by: Ysw on 2020/2/23.
+ * Created by: Ysw on 2020/3/29.
  */
-public interface BaseModel {
-    void onDestroy();
+public class BaseModel implements IModel {
+    @Override
+    public void onDestroy() {
+
+    }
 }

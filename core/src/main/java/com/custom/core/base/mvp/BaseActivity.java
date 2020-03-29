@@ -1,10 +1,10 @@
-package com.custom.core.base.ui;
+package com.custom.core.base.mvp;
 
 import android.os.Bundle;
 import android.view.InflateException;
 
-import com.custom.core.base.mvp.IBasePresenter;
-import com.custom.core.base.mvp.IBaseView;
+import com.custom.core.base.mvp.iface.IActivity;
+import com.custom.core.base.mvp.iface.IPresenter;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +14,7 @@ import butterknife.Unbinder;
 /**
  * Created by: Ysw on 2020/2/23.
  */
-public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatActivity implements IBaseView {
+public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IActivity {
     private Unbinder unbinder;
     protected P mPresenter;
 
@@ -32,9 +32,6 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
             e.printStackTrace();
         }
         initPresenter();
-        if (mPresenter != null) {
-            mPresenter.attachView(this);
-        }
         initData(savedInstanceState);
     }
 
@@ -52,9 +49,5 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
             unbinder.unbind();
         }
         this.unbinder = null;
-        if (mPresenter != null) {
-            mPresenter.detachView();
-        }
-        this.mPresenter = null;
     }
 }
