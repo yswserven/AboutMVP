@@ -2,14 +2,17 @@ package com.custom.mvp.ui.contract;
 
 import com.custom.core.base.mvp.iface.IModel;
 import com.custom.core.base.mvp.iface.IView;
+import com.custom.mvp.model.User;
+
+import java.util.List;
 
 public interface MainContract  {
 
-    public interface View extends IView{
-
+     interface View extends IView{
+        void successHttpData(List<User> list);
     }
 
-    public interface Model extends IModel{
+     interface Model extends IModel{
 
         void getHttpData();
     }

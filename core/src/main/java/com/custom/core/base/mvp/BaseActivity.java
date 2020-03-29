@@ -49,5 +49,9 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
             unbinder.unbind();
         }
         this.unbinder = null;
+        if (mPresenter != null) {
+            mPresenter.onDestroy();
+        }
+        mPresenter = null;
     }
 }
