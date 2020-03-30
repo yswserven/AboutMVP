@@ -1,4 +1,4 @@
-package com.custom.mvp.model;
+package com.custom.core.net;
 
 import java.util.Map;
 

@@ -1,15 +1,9 @@
 package com.custom.mvp.ui.presenter;
 
-import android.util.Log;
-
 import com.custom.core.base.mvp.BaseObserver;
 import com.custom.core.base.mvp.BasePresenter;
+import com.custom.core.unit.MyLog;
 import com.custom.mvp.ui.contract.MainContract;
-
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenter extends BasePresenter<MainContract.Model, MainContract.View> {
     private final String TAG = this.getClass().getSimpleName();
@@ -20,19 +14,16 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
 
     public void getUserInfo() {
         mRootView.showLoadingDialog();
-        mModel.getHttpData()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<String>(MainPresenter.this) {
-                    @Override
-                    public void onNext(String s) {
-                        Log.d(TAG, "onNext: s = " + s);
-                    }
+        subscribe(mModel.getHttpData(), new BaseObserver<String>(this) {
+            @Override
+            public void onNext(String s) {
+                MyLog.d(TAG, "MainPresenter.onNext：s = " + s);
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "onError: e = " + e);
-                    }
-                });
+            @Override
+            public void onError(Throwable e) {
+                MyLog.d(TAG, "MainPresenter.onError：e = " + e);
+            }
+        });
     }
 }

@@ -4,6 +4,8 @@ package com.custom.core.unit;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.custom.core.BuildConfig;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -12,7 +14,7 @@ import timber.log.Timber;
 
 public class MyLog {
     private static final String TAG = "MyLog";
-    public static final boolean DEBUG = true;
+    private static final boolean DEBUG = BuildConfig.LOG_DEBUG;
 
     public static void init() {
         if (DEBUG) {

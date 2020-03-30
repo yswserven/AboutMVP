@@ -6,8 +6,12 @@ import com.custom.core.base.mvp.iface.IView;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by: Ysw on 2020/3/29.
@@ -48,6 +52,13 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
             }
             compositeDisposable.add(subscription);
         }
+    }
+
+    public  <T> void subscribe(Observable<T> observable, Observer<T> observer) {
+        observable.subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.newThread())//子线程访问网络
+                .observeOn(AndroidSchedulers.mainThread())//回调到主线程
+                .subscribe(observer);
     }
 
     @Override

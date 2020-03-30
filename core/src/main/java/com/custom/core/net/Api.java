@@ -1,4 +1,4 @@
-package com.custom.mvp.model;
+package com.custom.core.net;
 
 /**
  * 接口常量类
@@ -6,7 +6,7 @@ package com.custom.mvp.model;
  * @author hulin
  */
 public interface Api {
-    String APP_DOMAIN = "https://www.wanandroid.com";
+    String BASE_URL = "https://www.wanandroid.com";
 
     String REQUEST_SUCCESS = "200";
 
