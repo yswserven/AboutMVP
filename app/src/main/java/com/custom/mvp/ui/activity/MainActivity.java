@@ -11,7 +11,6 @@ import com.custom.mvp.R;
 import com.custom.mvp.di.component.DaggerMainComponent;
 import com.custom.mvp.di.module.MainModule;
 import com.custom.mvp.ui.contract.MainContract;
-import com.custom.mvp.ui.model.MainModel;
 import com.custom.mvp.ui.presenter.MainPresenter;
 
 import androidx.annotation.Nullable;
@@ -23,7 +22,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DaggerMainComponent.builder()
-                .mainModule(new MainModule().providerModule(new MainModel()).providerView(this))
+                .mainModule(new MainModule(this))
                 .build()
                 .inject(this);
     }

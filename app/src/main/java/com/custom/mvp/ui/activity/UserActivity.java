@@ -8,7 +8,6 @@ import com.custom.mvp.R;
 import com.custom.mvp.di.component.DaggerUserComponent;
 import com.custom.mvp.di.module.UserModule;
 import com.custom.mvp.ui.contract.UserContract;
-import com.custom.mvp.ui.model.UserModel;
 import com.custom.mvp.ui.presenter.UserPresenter;
 
 import androidx.annotation.Nullable;
@@ -22,7 +21,7 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DaggerUserComponent.builder()
-                .userModule(new UserModule().providerModule(new UserModel()).providerView(this))
+                .userModule(new UserModule(this))
                 .build()
                 .inject(this);
     }

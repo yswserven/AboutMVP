@@ -2,9 +2,6 @@ package com.custom.mvp.di.module;
 
 import com.custom.mvp.ui.contract.MainContract;
 import com.custom.mvp.ui.model.MainModel;
-import com.custom.mvp.ui.presenter.MainPresenter;
-
-import javax.inject.Inject;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,25 +11,19 @@ import dagger.Provides;
  */
 @Module
 public class MainModule {
-    private MainModel model;
     private MainContract.View view;
 
-    @Inject
-    public MainModule() {
+    public MainModule(MainContract.View view) {
+        this.view = view;
     }
 
     @Provides
-    MainPresenter provide() {
-        return new MainPresenter(model, view);
+    MainContract.View provideView() {
+        return view;
     }
 
-    public MainModule providerModule(MainModel model) {
-        this.model = model;
-        return this;
-    }
-
-    public MainModule providerView(MainContract.View view) {
-        this.view = view;
-        return this;
+    @Provides
+    MainContract.Model providerModule() {
+        return new MainModel();
     }
 }

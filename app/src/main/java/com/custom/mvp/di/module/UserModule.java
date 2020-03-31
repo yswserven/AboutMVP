@@ -2,9 +2,6 @@ package com.custom.mvp.di.module;
 
 import com.custom.mvp.ui.contract.UserContract;
 import com.custom.mvp.ui.model.UserModel;
-import com.custom.mvp.ui.presenter.UserPresenter;
-
-import javax.inject.Inject;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,25 +11,19 @@ import dagger.Provides;
  */
 @Module
 public class UserModule {
-    private UserModel model;
     private UserContract.View view;
 
-    @Inject
-    public UserModule() {
+    public UserModule(UserContract.View view) {
+        this.view = view;
     }
 
     @Provides
-    UserPresenter provide() {
-        return new UserPresenter(model, view);
+    UserContract.View provideView() {
+        return view;
     }
 
-    public UserModule providerModule(UserModel model) {
-        this.model = model;
-        return this;
-    }
-
-    public UserModule providerView(UserContract.View view) {
-        this.view = view;
-        return this;
+    @Provides
+    UserContract.Model providerModel() {
+        return new UserModel();
     }
 }
