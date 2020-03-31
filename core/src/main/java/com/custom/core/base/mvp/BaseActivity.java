@@ -35,12 +35,6 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
         initData(savedInstanceState);
     }
 
-    protected abstract int initLayout(@Nullable Bundle savedInstanceState);
-
-    protected abstract void initPresenter();
-
-    protected abstract void initData(@Nullable Bundle savedInstanceState);
-
 
     @Override
     protected void onDestroy() {

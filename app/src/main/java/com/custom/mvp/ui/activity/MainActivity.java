@@ -24,19 +24,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         tvName = findViewById(R.id.tv_name);
     }
 
+
     @Override
-    protected int initLayout(@Nullable Bundle savedInstanceState) {
+    public int initLayout(@Nullable Bundle savedInstanceState) {
         return R.layout.activity_main;
     }
 
     @Override
-    protected void initPresenter() {
-        mPresenter = new MainPresenter(new MainModel(), this);
+    public void initData(@Nullable Bundle savedInstanceState) {
+
     }
 
     @Override
-    protected void initData(@Nullable Bundle savedInstanceState) {
-
+    public void initPresenter() {
+        new MainPresenter(new MainModel(), this);
     }
 
     @Override
