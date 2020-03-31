@@ -51,7 +51,7 @@ public final class RetrofitHelper {
                 .readTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(new LogInterceptor())
                 .addInterceptor(new ErrorHandlerInterceptor())
-                .cookieJar(new CookiesManager())
+//                .cookieJar(new CookiesManager())
                 .retryOnConnectionFailure(true)
                 .build();
     }

@@ -6,6 +6,8 @@ import android.view.InflateException;
 import com.custom.core.base.mvp.iface.IActivity;
 import com.custom.core.base.mvp.iface.IPresenter;
 
+import javax.inject.Inject;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
@@ -16,6 +18,8 @@ import butterknife.Unbinder;
  */
 public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IActivity {
     private Unbinder unbinder;
+
+    @Inject
     protected P mPresenter;
 
     @Override
@@ -31,7 +35,6 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
             if (e instanceof InflateException) throw e;
             e.printStackTrace();
         }
-        initPresenter();
         initData(savedInstanceState);
     }
 

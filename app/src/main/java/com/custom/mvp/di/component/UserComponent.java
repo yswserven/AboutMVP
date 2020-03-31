@@ -1,17 +1,15 @@
 package com.custom.mvp.di.component;
 
-import com.custom.mvp.ui.activity.MainActivity;
-
-import javax.inject.Singleton;
+import com.custom.mvp.di.module.UserModule;
+import com.custom.mvp.ui.activity.UserActivity;
 
 import dagger.Component;
 
 /**
- * Created by: Ysw on 2020/2/23.
+ * Created by: Ysw on 2020/3/31.
  */
 
-@Singleton
-@Component
+@Component(modules = {UserModule.class})
 public interface UserComponent {
-    void inject(MainActivity activity);
+    void inject(UserActivity userActivity);
 }

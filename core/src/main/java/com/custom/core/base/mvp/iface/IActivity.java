@@ -13,6 +13,4 @@ public interface IActivity {
 
     void initData(@Nullable Bundle savedInstanceState);
 
-    void initPresenter();
-
 }

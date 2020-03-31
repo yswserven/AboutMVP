@@ -1,5 +1,6 @@
 package com.custom.mvp.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.Toast;
 
 import com.custom.core.base.mvp.BaseActivity;
 import com.custom.mvp.R;
+import com.custom.mvp.di.component.DaggerMainComponent;
+import com.custom.mvp.di.module.MainModule;
 import com.custom.mvp.ui.contract.MainContract;
 import com.custom.mvp.ui.model.MainModel;
 import com.custom.mvp.ui.presenter.MainPresenter;
@@ -22,6 +25,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tvName = findViewById(R.id.tv_name);
+        DaggerMainComponent.builder()
+                .mainModule(new MainModule().providerModule(new MainModel()).providerView(this))
+                .build()
+                .inject(this);
     }
 
 
@@ -33,11 +40,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
 
-    }
-
-    @Override
-    public void initPresenter() {
-        new MainPresenter(new MainModel(), this);
     }
 
     @Override
@@ -54,6 +56,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     public void getNetData(View view) {
         mPresenter.getUserInfo();
+        startActivity(new Intent(MainActivity.this, UserActivity.class));
     }
 
 
