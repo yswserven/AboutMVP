@@ -1,5 +1,6 @@
 package com.custom.core.net;
 
+import com.custom.core.net.converter.GsonConverterFactory;
 import com.custom.core.net.interceptor.ErrorHandlerInterceptor;
 import com.custom.core.net.interceptor.LogInterceptor;
 
@@ -8,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by: Ysw on 2020/3/29.
@@ -37,7 +37,7 @@ public final class RetrofitHelper {
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .client(getOkHttpClient())
-                    .addConverterFactory(ScalarsConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
         }
