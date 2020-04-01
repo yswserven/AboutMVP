@@ -54,6 +54,7 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
     @Override
     public void addDisposable(Disposable subscription) {
         if (mRootView != null) {
+            mRootView.showLoadingDialog();
             CompositeDisposable compositeDisposable = mCompositeDisposableMap.get(mRootView);
             if (compositeDisposable == null || compositeDisposable.isDisposed()) {
                 compositeDisposable = new CompositeDisposable();
@@ -88,6 +89,7 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
     @Override
     public void unDisposable() {
         if (mRootView != null) {
+            mRootView.hidLoadingDialog();
             CompositeDisposable compositeDisposable = mCompositeDisposableMap.get(mRootView);
             if (compositeDisposable != null) {
                 compositeDisposable.dispose();

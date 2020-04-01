@@ -17,16 +17,11 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
     }
 
     public void getUserInfo() {
-        mRootView.showLoadingDialog();
         subscribe(mModel.getHttpData(), new BaseObserver<String>(this) {
             @Override
             public void onNext(String s) {
+                mRootView.successHttpData(s);
                 MyLog.d(TAG, "MainPresenter.onNext：s = " + s);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                MyLog.d(TAG, "MainPresenter.onError：e = " + e);
             }
         });
     }

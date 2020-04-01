@@ -41,16 +41,6 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
 
     }
 
-    @Override
-    public void showLoadingDialog() {
-
-    }
-
-    @Override
-    public void hidLoadingDialog() {
-
-    }
-
     public void getUserInfo(View view) {
         mPresenter.getUserInfo();
     }

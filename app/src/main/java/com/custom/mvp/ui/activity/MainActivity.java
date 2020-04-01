@@ -3,7 +3,6 @@ package com.custom.mvp.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.custom.core.base.mvp.BaseActivity;
 import com.custom.core.unit.MyLog;
@@ -38,21 +37,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     }
 
-    @Override
-    public void showLoadingDialog() {
-        Toast.makeText(this, "开始网络请求", Toast.LENGTH_SHORT).show();
-        MyLog.d("Ysw", "showLoadingDialog: 开始网络请求");
-    }
-
-    @Override
-    public void hidLoadingDialog() {
-        Toast.makeText(this, "结束网络请求", Toast.LENGTH_SHORT).show();
-        MyLog.d("Ysw", "hidLoadingDialog: 结束网络请求");
-    }
-
     public void getNetData(View view) {
         mPresenter.getUserInfo();
-        startActivity(new Intent(MainActivity.this, UserActivity.class));
+        startActivity(new Intent(this,UserActivity.class));
     }
 
 

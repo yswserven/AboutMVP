@@ -1,5 +1,6 @@
 package com.custom.mvp.ui.presenter;
 
+import com.custom.core.base.mvp.BaseObserver;
 import com.custom.core.base.mvp.BasePresenter;
 import com.custom.core.unit.MyLog;
 import com.custom.mvp.ui.contract.UserContract;
@@ -19,6 +20,12 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
     }
 
     public void getUserInfo() {
-        MyLog.d(TAG, "UserPresenter.getUserInfo：" + "没有出现空指针，正在请求数据");
+        subscribe(mModel.getUserInfo(), new BaseObserver<String>(this) {
+            @Override
+            public void onNext(String s) {
+                mRootView.successUserInfo(s);
+                MyLog.d(TAG, "UserPresenter.onNext：" + s);
+            }
+        });
     }
 }

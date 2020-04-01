@@ -5,6 +5,9 @@ import android.view.InflateException;
 
 import com.custom.core.base.mvp.iface.IActivity;
 import com.custom.core.base.mvp.iface.IPresenter;
+import com.custom.core.base.mvp.iface.IView;
+import com.custom.core.base.view.LoadingDialog;
+import com.custom.core.unit.MyLog;
 
 import javax.inject.Inject;
 
@@ -16,8 +19,10 @@ import butterknife.Unbinder;
 /**
  * Created by: Ysw on 2020/2/23.
  */
-public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IActivity {
+public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IActivity, IView {
+    private final String TAG = this.getClass().getSimpleName();
     private Unbinder unbinder;
+    private LoadingDialog mLoadingDialog;
 
     @Inject
     protected P mPresenter;
@@ -38,6 +43,23 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
         initData(savedInstanceState);
     }
 
+    @Override
+    public void showLoadingDialog() {
+        if (mLoadingDialog == null) {
+            mLoadingDialog = new LoadingDialog(this);
+        }
+        mLoadingDialog.show();
+        MyLog.d(TAG, "BaseActivity.showLoadingDialog：" + mLoadingDialog.getClass().hashCode());
+        MyLog.d(TAG, "BaseActivity.showLoadingDialog：" + "展示Dialog");
+    }
+
+    @Override
+    public void hidLoadingDialog() {
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
+        }
+        MyLog.d(TAG, "BaseActivity.hidLoadingDialog：" + "隐藏Dialog");
+    }
 
     @Override
     protected void onDestroy() {
