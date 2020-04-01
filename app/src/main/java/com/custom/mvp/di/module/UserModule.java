@@ -1,7 +1,6 @@
 package com.custom.mvp.di.module;
 
 import com.custom.mvp.ui.contract.UserContract;
-import com.custom.mvp.ui.model.UserModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,10 +19,5 @@ public class UserModule {
     @Provides
     UserContract.View provideView() {
         return view;
-    }
-
-    @Provides
-    UserContract.Model providerModel() {
-        return new UserModel();
     }
 }

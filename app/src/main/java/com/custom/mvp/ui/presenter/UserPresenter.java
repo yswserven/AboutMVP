@@ -3,6 +3,7 @@ package com.custom.mvp.ui.presenter;
 import com.custom.core.base.mvp.BasePresenter;
 import com.custom.core.unit.MyLog;
 import com.custom.mvp.ui.contract.UserContract;
+import com.custom.mvp.ui.model.UserModel;
 
 import javax.inject.Inject;
 
@@ -13,7 +14,7 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
     private final String TAG = this.getClass().getSimpleName();
 
     @Inject
-    public UserPresenter(UserContract.Model model, UserContract.View view) {
+    public UserPresenter(UserModel model, UserContract.View view) {
         super(model, view);
     }
 
