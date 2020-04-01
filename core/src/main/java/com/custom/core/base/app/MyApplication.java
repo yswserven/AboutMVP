@@ -1,6 +1,7 @@
 package com.custom.core.base.app;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.custom.core.unit.MyLog;
 
@@ -9,6 +10,12 @@ import com.custom.core.unit.MyLog;
  */
 public class MyApplication extends Application {
     public static Application mInstance = new MyApplication();
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

@@ -1,7 +1,6 @@
 package com.custom.mvp.di.module;
 
 import com.custom.mvp.ui.contract.MainContract;
-import com.custom.mvp.ui.model.MainModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,10 +19,5 @@ public class MainModule {
     @Provides
     MainContract.View provideView() {
         return view;
-    }
-
-    @Provides
-    MainContract.Model providerModule() {
-        return new MainModel();
     }
 }

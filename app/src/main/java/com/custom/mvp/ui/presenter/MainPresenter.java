@@ -4,6 +4,7 @@ import com.custom.core.base.mvp.BaseObserver;
 import com.custom.core.base.mvp.BasePresenter;
 import com.custom.core.unit.MyLog;
 import com.custom.mvp.ui.contract.MainContract;
+import com.custom.mvp.ui.model.MainModel;
 
 import javax.inject.Inject;
 
@@ -11,7 +12,7 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
     private final String TAG = this.getClass().getSimpleName();
 
     @Inject
-    public MainPresenter(MainContract.Model model, MainContract.View view) {
+    public MainPresenter(MainModel model, MainContract.View view) {
         super(model, view);
     }
 
